@@ -6,6 +6,8 @@ let telefono;
 let monto;
 let cuotas;
 let revisarSolicitud;
+let montoTarjeta = 60000;
+let valorSeguro = 800;
 
 const agregarProductos = () => {
   do {
@@ -86,7 +88,7 @@ const agregarProductos = () => {
         telefono = parseInt(prompt("Indique su numero de telefono porfavor"));
         alert(
           nombre +
-            " tenes un limite pre aprobado de $60.000 en su tarjeta " +
+            "Tenes un limite pre aprobado de $ "+montoTarjeta+" en su tarjeta " +
             tarjeta
         );
         break;
@@ -219,10 +221,29 @@ const agregarProductos = () => {
     /***************************DOM DE SELECCION DEL USUARIO**************************************/
     
     let contenedor = document.getElementById("divProductos");
-    contenedor.innerHTML = `<h1> "Estos son los productos seleccionados" </h1>
-                            <p>Productos: <li>${productosPrestamos}  <br> <li>${tarjeta} <br> <li>${seguro}</p>
+    
+    
+    
+        if(productosPrestamos == "tarjeta de credito"){
+        contenedor.innerHTML = `
+        <h1> "Estos son los productos seleccionados" </h1>
+        <p>Productos: <li>${productosPrestamos} <br> <li>${seguro}</p>
+        <h3>Tipo de Porductos</h3>
+        <p>Monto en tarjeta: $${montoTarjeta} <br>
+         Tipo de tarjeta: ${tarjeta}</p>
+
+        <h3>Datos del Solicitante</h3>
+        <p>Nombre: ${nombre} <br> Telefono: ${telefono} <br> Dni: ${dni} <br></p>`
+    }else {
+        contenedor.innerHTML = `<h1> "Estos son los productos seleccionados" </h1>
+                            <p>Productos: <li>${productosPrestamos} <br> <li>${seguro}</p>
+                            <h3>Datos del prestamo</h3>
+                            <p>Monto del prestamo: $${monto} <br>
+                            Cantidad de cuotas: ${cuotas} <br></p>
                             <h3>Datos del Solicitante</h3>
-                            <p>Nombre: ${nombre} <br> Telefonno: ${telefono} <br> Dni: ${dni} <br></p>`;
+                            <p>Nombre: ${nombre} <br> Telefono: ${telefono} <br> Dni: ${dni} <br></p>`;
+    }
+    
 
     contenedor.style.background = "gray";
     contenedor.style.color = "white";
